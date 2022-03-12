@@ -10,3 +10,8 @@ self.addEventListener("install", (evt) => {
 self.addEventListener("activate", (evt) => {
   console.log("service worker activated");
 });
+//add fetch event
+//listen to fetch event
+self.addEventListener("fetch", (evt) => {
+  console.log("fetch event", evt);
+});
