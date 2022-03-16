@@ -1,6 +1,6 @@
 {
-  "name": "Food Ninja",
-  "short_name": "FoodNinja",
+  "name": "Splash Screen",
+  "short_name": "Icon Name",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#FFE9D2",
