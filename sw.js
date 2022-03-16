@@ -1,4 +1,4 @@
-const staticCacheName = "site-static-v3";//cache versioning...
+const staticCacheName = "site-static-v2"; //cache versioning...
 const assets = [
   "/",
   "/index.html",
@@ -6,6 +6,7 @@ const assets = [
   "/pages/contact.html",
   "/js/app.js",
   "/js/ui.js",
+  "/js/db.js",
   "/js/materialize.min.js",
   "/css/styles.css",
   "/css/materialize.min.css",
@@ -13,6 +14,8 @@ const assets = [
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "https://unpkg.com/pwacompat",
+  "https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js",
+  "https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js",
 ];
 //self refers to servive worker itself
 //add install event
@@ -46,10 +49,13 @@ self.addEventListener("activate", (evt) => {
 //listen to fetch event
 self.addEventListener("fetch", (evt) => {
   //console.log("fetch event", evt);
-  evt.respondWith(
-    caches.match(evt.request).then((cacheRes) => {
-      return cacheRes || fetch(evt.request);
-      //return resource from cache api if exists otherwise from server
-    })
-  );
+  if (evt.request.url.indexOf("firestore.googleapis.com") === -1) {
+    //dont cache data that comes from fire store
+    evt.respondWith(
+      caches.match(evt.request).then((cacheRes) => {
+        return cacheRes || fetch(evt.request);
+        //return resource from cache api if exists otherwise from server
+      })
+    );
+  }
 });
