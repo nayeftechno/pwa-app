@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // add recipe form
   const forms = document.querySelectorAll(".side-form");
   M.Sidenav.init(forms, { edge: "left" });
+  updateOnlineStatus();
 });
 
 // render recipe data
@@ -30,3 +31,19 @@ const removeRecipe = (id) => {
   const recipe = document.querySelector(`.recipe[data-id=${id}]`);
   recipe.remove();
 };
+
+window.addEventListener("online", updateOnlineStatus);
+window.addEventListener("offline", updateOnlineStatus);
+
+function updateOnlineStatus(event) {
+  const condition = navigator.onLine ? "online" : "offline";
+  document.querySelector(".status").classList.remove(`online`);
+  document.querySelector(".status").classList.remove(`offline`);
+  document.querySelector(".status").classList.add(`${condition}`);
+  if(condition === 'online'){
+    document.querySelector('.status').textContent = 'Online 😆 😆 😆';
+  }
+  else{
+    document.querySelector('.status').textContent = 'Offline 🤬 🤬 🤬';
+  }
+}

@@ -73,3 +73,11 @@
   form .input-field{
     margin-top: 30px;
   }
+  .offline{
+    color: red !important;
+    font-size: 25px;
+  }
+  .online{
+    color: #33cc33 !important;
+    font-size: 25px;
+  }
