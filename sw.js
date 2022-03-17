@@ -48,7 +48,7 @@ self.addEventListener("activate", (evt) => {
 //add fetch event
 //listen to fetch event
 self.addEventListener("fetch", (evt) => {
-  //console.log("fetch event", evt);
+  //console.log("fetch event");
   if (evt.request.url.indexOf("firestore.googleapis.com") === -1) {
     //dont cache data that comes from fire store
     evt.respondWith(
