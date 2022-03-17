@@ -45,6 +45,7 @@ form.addEventListener("submit", (evt) => {
 });
 
 // remove a recipe
+// Event delegation concept
 const recipeContainer = document.querySelector(".recipes");
 recipeContainer.addEventListener("click", (evt) => {
   if (evt.target.tagName === "I") {
